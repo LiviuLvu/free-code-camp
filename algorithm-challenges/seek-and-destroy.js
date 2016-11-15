@@ -1,21 +1,36 @@
-function destroyer(items) {
 
-  var arrayOfArguments = arguments;
 
-  function removeElements (e) {
-    for (var i = 1; i < arguments.length+1; i++) {
-      if (e === arrayOfArguments[i]) {
-        console.log('no!' + arrayOfArguments[i]);
-        return false;
-      }
+// sort array
+
+// count up and compare for equal or larger nr
+
+// return that index -1
+
+function getIndexToIns(arr, num) {
+
+  var sortedArr = arguments[0].sort();
+
+  var response;
+
+  for (i = 0; i < sortedArr.length; i++) {
+
+   if([i] <= num) {
+
+      response = i-1;
+
     }
-    console.log('yes!' + e);
-    return true;
+
   }
 
-  var filteredArray = arguments[0].filter(removeElements);
+return response;
 
-  return filteredArray;
 }
 
-destroyer([8, 7, 1, 9, 9], 9, 8, 7);
+getIndexToIns([40, 40, 60], 50);
+
+
+
+
+
+Liviu Iancu
+
