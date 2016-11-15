@@ -3,7 +3,7 @@ function destroyer(items) {
   var arrayOfArguments = arguments;
 
   function removeElements (e) {
-    for (var i = 1; i < arguments.length; i++) {
+    for (var i = 1; i < arguments.length+1; i++) {
       if (e === arrayOfArguments[i]) {
         console.log('no!' + arrayOfArguments[i]);
         return false;
