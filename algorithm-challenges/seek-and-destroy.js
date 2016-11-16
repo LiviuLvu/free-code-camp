@@ -1,36 +1,21 @@
+function destroyer(items) {
 
+  var arrayOfArguments = arguments;
 
-// sort array
-
-// count up and compare for equal or larger nr
-
-// return that index -1
-
-function getIndexToIns(arr, num) {
-
-  var sortedArr = arguments[0].sort();
-
-  var response;
-
-  for (i = 0; i < sortedArr.length; i++) {
-
-   if([i] <= num) {
-
-      response = i-1;
-
+  function removeElements (e) {
+    for (var i = 1; i < arguments.length + 1; i++) {
+      if (e === arrayOfArguments[i]) {
+        console.log('hey!' + arrayOfArguments[i]);
+        return false;
+      }
     }
-
+    console.log('yo!');
+    return true;
   }
 
-return response;
+  var filteredArray = arguments[0].filter(removeElements);
 
+  return filteredArray;
 }
 
-getIndexToIns([40, 40, 60], 50);
-
-
-
-
-
-Liviu Iancu
-
+destroyer([3, 5, 1, 2, 2], 2, 3, 5);
