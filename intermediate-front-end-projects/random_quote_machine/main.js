@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
-  $('#getMessage').on('click', function(event) {
-    event.preventDefault();
+  $.getJSON('/quotes.json', function(json) {
 
-    $.getJSON('/quotes.json', function(json) {
+    function getNewQuote(event) {
       // how many quotes are in the json?
       var maxNrOfQuotes = json.length;
       // get random number between 0 to end of the quote list
@@ -18,7 +17,21 @@ $(document).ready(function() {
       html += '</blockquote>';
 
       $('.message').html(html);
-    });
+
+
+      $('#sendTweet').on('click', function(event) {
+        $(this).attr('href', 'https://twitter.com/intent/tweet?text=' + '" ' + aQuote.quote + ' "' + ' ' + aQuote.author);
+      });
+    }
+    getNewQuote();
+
+    if ($('#sendTweet').hasClass('disabled')) {
+      $('#sendTweet').removeClass('disabled');
+    }
+
+    $('#getMessage').on('click', getNewQuote);
+
 
   });
+
 });
