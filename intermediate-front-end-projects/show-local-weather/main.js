@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       successCallback,
-      errorCallback_highAccuracy, { maximumAge: 600000, timeout: 5000, enableHighAccuracy: true });
+      errorCallback_highAccuracy, { maximumAge: 600000, timeout: 5000 });
   }
 
   function errorCallback_highAccuracy(error) {
