@@ -13,13 +13,14 @@
 
 jQuery(document).ready(function($) {
 
+  // getCurrentPosition() is deprecated
 
   // get geolocation
-  navigator.geolocation.getCurrentPosition(
-    successCallback,
-    errorCallback_highAccuracy, { maximumAge: 600000, timeout: 5000, enableHighAccuracy: true }
-
-  );
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      successCallback,
+      errorCallback_highAccuracy, { maximumAge: 600000, timeout: 5000, enableHighAccuracy: true });
+  }
 
   function errorCallback_highAccuracy(error) {
     if (error.code == error.TIMEOUT) {
@@ -82,10 +83,7 @@ jQuery(document).ready(function($) {
       $('.icon').attr('alt', data.current_observation.icon);
       $('.icon').attr('src', data.current_observation.icon_url);
 
-
-      // console.log("Current temperature in " + location + " is: " + temp_c);
-
-      console.log(data);
+      // console.log(data);
     });
 
   }
