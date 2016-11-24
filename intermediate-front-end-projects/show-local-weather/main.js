@@ -63,8 +63,8 @@ jQuery(document).ready(function($) {
     // start working with the data
     $.getJSON('http://api.wunderground.com/api/af24923e752f84ec/geolookup/conditions/q/' + latitude + ',' + longitude + '.json' + latitude + '&lon=' + longitude + '&appid=9ae9a5ef6d1fead22bbd77b4b0a615b5', function(data) {
 
-      var location = data.location.city;
       var temperature = data.current_observation.temp_c;
+
       $('.temperature').text(temperature + 'C');
 
       $('.temperatureSwitch').on('click', function(event) {
@@ -77,11 +77,15 @@ jQuery(document).ready(function($) {
         }
       });
 
+      $('.location').text(data.location.city + ', ' + data.location.country);
+      $('.weather').text(data.current_observation.weather);
+      $('.icon').attr('alt', data.current_observation.icon);
+      $('.icon').attr('src', data.current_observation.icon_url);
 
 
       // console.log("Current temperature in " + location + " is: " + temp_c);
 
-      // console.log(data);
+      console.log(data);
     });
 
   }
