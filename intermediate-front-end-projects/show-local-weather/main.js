@@ -19,14 +19,14 @@ jQuery(document).ready(function($) {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       successCallback,
-      errorCallback_highAccuracy, { maximumAge: 600000, timeout: 5000 });
+      errorCallback_highAccuracy);
   }
 
   function errorCallback_highAccuracy(error) {
     if (error.code == error.TIMEOUT) {
       // Attempt to get GPS loc timed out after 5 seconds,
       // try low accuracy location
-      $('.coordinates').text("attempting to get low accuracy location");
+      console.log("attempting to get low accuracy location");
       navigator.geolocation.getCurrentPosition(
         successCallback,
         errorCallback_lowAccuracy, { maximumAge: 600000, timeout: 10000, enableHighAccuracy: false });
