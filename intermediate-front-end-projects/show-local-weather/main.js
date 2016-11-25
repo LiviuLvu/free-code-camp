@@ -1,15 +1,7 @@
 // DESCRIPTION OF FUNCTIONALITY
-// get weather in my current location on page load
-// city, temperature
+// show location temperature
 // icon weather indicator
 // push button to toggle fahrenheit/celsius
-
-
-// DATA NOTES
-// api key af24923e752f84ec, 9ae9a5ef6d1fead22bbd77b4b0a615b5
-// get location weather based on coordiantes
-// 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=9ae9a5ef6d1fead22bbd77b4b0a615b5'
-// http://api.wunderground.com/api/af24923e752f84ec/geolookup/q/' + latitude + ',' + longitude + '.json
 
 jQuery(document).ready(function($) {
 
@@ -17,43 +9,7 @@ jQuery(document).ready(function($) {
 
   // get geolocation
   if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      successCallback,
-      errorCallback_highAccuracy);
-  }
-
-  function errorCallback_highAccuracy(error) {
-    if (error.code == error.TIMEOUT) {
-      // Attempt to get GPS loc timed out after 5 seconds,
-      // try low accuracy location
-      console.log("attempting to get low accuracy location");
-      navigator.geolocation.getCurrentPosition(
-        successCallback,
-        errorCallback_lowAccuracy, { maximumAge: 600000, timeout: 10000, enableHighAccuracy: false });
-      return;
-    }
-
-    var msg = "Can't get your location (high accuracy attempt). Error = ";
-    if (error.code == 1)
-      msg += "PERMISSION_DENIED";
-    else if (error.code == 2)
-      msg += "POSITION_UNAVAILABLE";
-    msg += ", msg = " + error.message;
-
-    $('.coordinates').text(msg);
-  }
-
-  function errorCallback_lowAccuracy(error) {
-    var msg = "Can't get your location (low accuracy attempt). Error = ";
-    if (error.code == 1)
-      msg += "PERMISSION_DENIED";
-    else if (error.code == 2)
-      msg += "POSITION_UNAVAILABLE";
-    else if (error.code == 3)
-      msg += "TIMEOUT";
-    msg += ", msg = " + error.message;
-
-    $('.coordinates').text(msg);
+    navigator.geolocation.getCurrentPosition(successCallback);
   }
 
   function successCallback(position) {
