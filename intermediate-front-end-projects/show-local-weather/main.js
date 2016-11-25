@@ -7,18 +7,19 @@ jQuery(document).ready(function($) {
 
   // getCurrentPosition() is deprecated
 
-  // get geolocation
-  if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(successCallback);
-  }
+  // if ('geolocation' in navigator) {
+  //   navigator.geolocation.getCurrentPosition(successCallback);
+  // }
 
   function successCallback(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
     $('.coordinates').text("Latitude: " + latitude + ", Longitude: " + longitude + " Accuracy=" + position.coords.accuracy + "m");
 
-    // start working with the data
-    $.getJSON('http://api.wunderground.com/api/af24923e752f84ec/geolookup/conditions/q/' + latitude + ',' + longitude + '.json' + latitude + '&lon=' + longitude + '&appid=9ae9a5ef6d1fead22bbd77b4b0a615b5', function(data) {
+  // start working with the data
+  // $.getJSON('http://api.wunderground.com/api/af24923e752f84ec/geolookup/conditions/q/' + latitude + ',' + longitude + '.json' + latitude + '&lon=' + longitude + '&appid=9ae9a5ef6d1fead22bbd77b4b0a615b5', function(data) {
+
+  $.getJSON('http://api.wunderground.com/api/af24923e752f84ec/geolookup/conditions/q/autoip.json', function(data) {    
 
       var temperature = data.current_observation.temp_c;
 
@@ -39,7 +40,7 @@ jQuery(document).ready(function($) {
       $('.icon').attr('alt', data.current_observation.icon);
       $('.icon').attr('src', data.current_observation.icon_url);
 
-      // console.log(data);
+      console.log(data);
     });
 
   }
