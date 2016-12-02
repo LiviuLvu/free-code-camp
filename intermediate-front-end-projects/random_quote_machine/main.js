@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $.getJSON('free-code-camp/intermediate-front-end-projects/random_quote_machine/quotes.json', function(json) {
+  $.getJSON('quotes.json', function(json) {
 
     function getNewQuote(event) {
       // how many quotes are in the json?
