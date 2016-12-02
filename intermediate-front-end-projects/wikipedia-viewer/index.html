@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Wikipedia Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.concisecss.com/v3.4.0/concise.min.css">
+    <link rel="stylesheet" href="https://cdn.concisecss.com/concise-ui/concise-ui.min.css">
+  </head>
+  <body>
+
+    <main container>
+      <div column="6 +3">
+        <h1>Wikipedia Viewer</h1>
+        <p>Search Wikipedia articles using the search field. If you are out of inspiration click "Open random article". </p>
+        <form action="" method="get">
+          <label>Search Wikipedia<input type="text" placeholder="Search for articles"></label>
+        </form>
+        <button id="search" class="-bordered -success">Search</button>
+        <button id="random" class="-bordered -success"> Open random article</button>
+      </div>
+    </main>
+
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
