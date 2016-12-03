@@ -12,17 +12,17 @@
     <main container>
       <div column="6 +3">
         <h1>Wikipedia Viewer</h1>
-        <p>Search Wikipedia articles using the search field. If you are out of inspiration click "Open random article". </p>
-        <form action="" method="get">
-          <label>Search Wikipedia<input type="text" placeholder="Search for articles"></label>
-        </form>
-        <button id="search" class="-bordered -success">Search</button>
-        <button id="random" class="-bordered -success"> Open random article</button>
-        <br>
-        <br>
-        <p>View the project code on github by following this link:
+        <p>Search Wikipedia articles using the search field. If you are out of inspiration click "Open random article". <br> View the project code on github by following this link:
           <a href="https://github.com/LiviuLvu/free-code-camp/tree/gh-pages/intermediate-front-end-projects/wikipedia-viewer">Project Repository</a>
         </p>
+        <form action="" method="get">
+          <label>Search Wikipedia<input id="searchVal" type="text" placeholder="Search for articles" value="newton"></label>
+        </form>
+        <button id="searchTerm" class="-bordered -success">Search</button>
+        <button id="random" class="-bordered -success"> Open random article</button>
+        <ul class="results">
+            
+        </ul>
       </div>
 
     </main>
