@@ -19,16 +19,12 @@ $(document).ready(function() {
 
     searchVal = $('#searchVal').val();
     if (searchVal !== '') {
-      searchWiki(); 
+      searchWiki();
     } else {
       // clear list if input is cleared
       $('.results').html('');
-      setTimeout(clearlist, 2000);
     }
-    function clearlist () {
-       $('.results').html('');
-    } 
-
+    return false; 
   });
 });
 
