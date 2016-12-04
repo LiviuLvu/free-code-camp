@@ -20,10 +20,14 @@ $(document).ready(function() {
     searchVal = $('#searchVal').val();
     if (searchVal !== '') {
       searchWiki(); 
-      // clear list if search item is deleted
     } else {
+      // clear list if input is cleared
       $('.results').html('');
+      setTimeout(clearlist, 2000);
     }
+    function clearlist () {
+       $('.results').html('');
+    } 
 
   });
 });
@@ -52,13 +56,8 @@ function searchWiki(argument) {
   if (searchVal !== '' && $('.results').is(':empty')) {
     // show spinner until data is loaded
     $('.wait').addClass('spinner');
-  } else {
-    $('.wait').removeClass('spinner');
-    // clear list if search item is deleted
-    $('.results').html('');
   }
-
-  
+    
   // load data
   $.getJSON(wikiLink, function(data) {
 
@@ -75,8 +74,9 @@ function searchWiki(argument) {
       listResults += '<p>' + description + '</p>';
       listResults += '</li></a>';
     }
-
+    
     $('.wait').removeClass('spinner');
     $('.results').html(listResults);
+
   });
 }
