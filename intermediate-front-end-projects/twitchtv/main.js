@@ -29,11 +29,3 @@ function loadChanels() {
   });
 
 }
-
-// make entire row a clickable link
-$('tr').click(function() {
-    window.location = $(this).find('a').attr('href');
-  })
-  .hover(function() {
-    $(this).css('cursor','pointer');
-  });
