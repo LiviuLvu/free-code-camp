@@ -7,7 +7,7 @@
 var channelsList = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
 
 $(document).ready(function($) {
-  // loadChanels();
+  loadChanels();
 });
 
 function loadChanels() {
@@ -16,12 +16,28 @@ function loadChanels() {
     $.ajax({
       type: 'GET',
       // url: 'https://api.twitch.tv/kraken/streams?channel=ESL_SC2,OgamingSC2,cretetion,freecodecamp,storbeck,habathcx,RobotCaleb,noobs2ninjas',
-      url: 'https://api.twitch.tv/kraken/streams?channel=' + element,
+      url: 'https://api.twitch.tv/kraken/channels/' + element,
       headers: {
         'Accept': 'application/vnd.twitchtv.v3+json',
         'Client-ID': '9epvfqca5rr13kra8rwkdz2jodq57j'
       },
       success: function(data) {
+        var logo = data.logo;
+        var streamName = element;
+        var status = 'ONLINE';
+        // if null show no description
+        var description = data.status;
+        var chanelLink = data.url;
+        
+        // write data in dom
+        var channel = '';
+        channel += '<div class="row"><a href="'+ chanelLink +'"><img src="' + logo;
+        channel += '" alt="Stream Logo" class="two columns"></a><div class="eight columns"><h4>' + streamName;
+        channel += '</h4><p>' + status + '</p><p>' + description + '</p>';
+        channel += '<a href="' + chanelLink + '">Visit Channel</a></div></div><hr>';
+
+        $('.channels').append(channel);
+
         console.log(data);
       }
     });
