@@ -72,10 +72,8 @@ function loadChanels() {
             console.log('off');
             displayChannel();
           } else if (sortStatus == 'on' && channelStatus === "ONLINE") {
-            console.log('on');
             displayChannel();
           } else if (sortStatus == 'all') {
-            console.log('all');
             displayChannel();
           }
 
@@ -88,10 +86,14 @@ function loadChanels() {
             $('.channels').append(html);
           }
 
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          if (jqXHR.status == 404 || errorThrown == 'Not Found') {
+            $('.channels').append('Channel ' + channel + ' was not found.' + '<br>');
+          }
         }
       });
     }
 
   });
 }
-
