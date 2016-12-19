@@ -1,18 +1,27 @@
-var numeralCodes = [
+var romanNumerals = [
+  // 1...9
   ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"],
+  // 10...90
   ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"],
+  // 100...900
   ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"],
-  ["", "M", "MM", "MMM"]
+  // 1000...3000
+  ["", "M", "MM", "MMM", ]
 ];
 
 function convertToRoman(num) {
-  var numeral = "";
-  var digits = num.toString().split('').reverse();
-  for (var i = 0; i < digits.length; i++) {
-    numeral = numeralCodes[i][parseInt(digits[i])] + numeral;
+  var romanNumber = "";
+  // convert numbers starting from right to left
+  var numArray = num.toString().split('').reverse();
+
+  // count how many numbers need to be converted
+  for (var i = numArray.length - 1; i >= 0; i--) {
+    // select romanNumerals array, enter needed sub array, add to romanNumber
+    romanNumber += romanNumerals[i][parseInt(numArray[i])];
   }
-  return numeral;
+
+  return romanNumber;
 }
 
-convertToRoman(2);
+convertToRoman(2017);
 
