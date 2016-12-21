@@ -89,7 +89,7 @@ function loadChanels() {
         },
         error: function(jqXHR, textStatus, errorThrown) {
           if (jqXHR.status == 404 || errorThrown == 'Not Found') {
-            $('.channels').append('Channel ' + channel + ' was not found.' + '<br>');
+            $('.404-channels').append('Channel ' + channel + ' was not found.' + '<br><hr>');
           }
         }
       });
