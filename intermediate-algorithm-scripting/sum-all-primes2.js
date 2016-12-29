@@ -8,7 +8,8 @@ function sumPrimes(num) {
 
   function isPrime(index) {
     var start = 2;
-
+    // When we look for divisors of a number, 
+    // it is necessary to look only up to its square root.
     while (start <= Math.floor(Math.sqrt(index))) {
       if (index % start++ === 0) {
         return false;
