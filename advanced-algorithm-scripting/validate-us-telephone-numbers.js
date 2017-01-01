@@ -8,18 +8,9 @@
 // only allowed characters are -() and digits
 
 function telephoneCheck(str) {
-  var regexObj = /^\(*\+*[1-9]{0,3}\)*-*[1-9]{0,3}[-. /]*\(*[2-9]\d{2}\)*[-. /]*\d{3}[-. /]*\d{4} *e*x*t*\.* *\d{0,4}$/g;
-
-  // if (regexObj.test(str)) {
-  //   console.log('???');
-  // }  
+  var regexObj = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/g;
 
   return regexObj.test(str);
 }
 
-
-// is true
-telephoneCheck("555-555-5555 peanut butter");
-
-// is false
-// telephoneCheck("6505552368");
+telephoneCheck("555-555-5555");
