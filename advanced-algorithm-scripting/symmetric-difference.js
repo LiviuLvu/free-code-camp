@@ -1,25 +1,32 @@
 function sym(args) {
-  var args = Array.prototype.slice.call(arguments);
+  // convert arguments to array
+  args = Array.prototype.slice.call(arguments);
 
   var getDiff = function(arr1, arr2) {
 
     function filterFunction(arr1, arr2) {
-      return arr1.filter(function(item) {
-        return arr2.indexOf(item) === -1;
+      // filter() method creates a new array with all elements that pass the test implemented by the provided function.
+      return arr1.filter(function(element) {
+        // indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
+        // if element in arr1 is not found in arr2, return the element
+        return arr2.indexOf(element) === -1;
       });
     }
 
-    // Run filter function on each array against the other then get unique values
     return filterFunction(arr1, arr2)
+      // concat() method is used to merge two or more arrays. This method returns a new array.
       .concat(filterFunction(arr2, arr1))
-      .filter(function(item, idx, arr) {
-        // Keep any items that are unique - the index of the current item === index of the first occurrence in the array
-        return arr.indexOf(item) === idx;
-      });
+      // create new array
+      .filter(function(element, index, arr) {
+        // "arr" is the current array
+        // "index" if the element in array
+        // indexOf returns the first element found in "arr" if it's same as index
+        return arr.indexOf(element) === index;
+    });
   };
 
   // Reduce all arguments getting the difference of them
   return args.reduce(getDiff, []);
 }
 
-sym([1, 2, 3], [5, 2, 1, 4]);
+sym([1, 2, 3], [5, 2, 1, 4], [5, 2, 7]);
