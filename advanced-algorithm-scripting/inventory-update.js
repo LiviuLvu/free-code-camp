@@ -18,11 +18,22 @@ function updateInventory(arr1, arr2) {
       console.log('not found in arr1' + element);
       arr1.push(element);
     }
+  });
+  
+  // sort arr1
+  return arr1.sort(function (a, b) {
+    a = a[1].toUpperCase();
+    b = b[1].toUpperCase();
 
-  // sort arr1 ?
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
   });
 
-  return arr1;
 }
 
 // Example inventory lists
