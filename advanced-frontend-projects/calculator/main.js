@@ -6,6 +6,7 @@ jQuery(document).ready(function($) {
   $('.buttons .evaluate').on('click', evaluateDisplay);
   $('.buttons .clearall').on('click', clearAll);
   $('.buttons .element').on('click', clearLast);
+  $('.buttons .squared').on('click', squared);
 
 
   // FUNCTIONS
@@ -35,8 +36,13 @@ jQuery(document).ready(function($) {
 
     var string = $('.display').val().slice(0, -1);
     $('.display').val(string);
-    console.log(string);
 
+  }
+
+  function squared() {
+    console.log('squared');
+    var squareNr = $('.display').val();
+    $('.display').val(Math.sqrt(squareNr));
   }
 
   // future upgrades
