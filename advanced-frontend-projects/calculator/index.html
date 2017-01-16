@@ -11,35 +11,39 @@
 
 <body>
   <div class="container">
-    <input type="text" readonly class="display" value="0">
-    <div class="buttons">
-      <input type="button" value="C"  class="clear">
-      <input type="button" value="CE" class="clear">
-    </div>
-    <div class="buttons">
-      <input type="button" value="7">
-      <input type="button" value="8">
-      <input type="button" value="9">
-      <input type="button" value="/">
-    </div>
-    <div class="buttons">
-      <input type="button" value="4">
-      <input type="button" value="5">
-      <input type="button" value="6">
-      <input type="button" value="*">
-    </div>
-    <div class="buttons">
-      <input type="button" value="1">
-      <input type="button" value="2">
-      <input type="button" value="3">
-      <input type="button" value="-">
-    </div>
-    <div class="buttons">
-      <input type="button" value="0">
-      <input type="button" value=".">
-      <input type="button" value="=">
-      <input type="button" value="+">
-    </div>
+    
+    <form name="calc">
+      <input type="text" name="display" readonly class="display">
+      
+      <div class="buttons">
+        <input type="button" value="C"  class="clear clearall">
+        <input type="button" value="CE" class="clear element">
+      </div>
+      <div class="buttons">
+        <input type="button" value="7" OnClick="display.value+='7'">
+        <input type="button" value="8" OnClick="display.value+='8'">
+        <input type="button" value="9" OnClick="display.value+='9'">
+        <input type="button" value="/" OnClick="display.value+='/'">
+      </div>
+      <div class="buttons">
+        <input type="button" value="4" OnClick="display.value+='4'">
+        <input type="button" value="5" OnClick="display.value+='5'">
+        <input type="button" value="6" OnClick="display.value+='6'">
+        <input type="button" value="x" OnClick="display.value+='x'">
+      </div>
+      <div class="buttons">
+        <input type="button" value="1" OnClick="display.value+='1'">
+        <input type="button" value="2" OnClick="display.value+='2'">
+        <input type="button" value="3" OnClick="display.value+='3'">
+        <input type="button" value="-" OnClick="display.value+='-'">
+      </div>
+      <div class="buttons">
+        <input type="button" value="0" OnClick="display.value+='0'">
+        <input type="button" value="." OnClick="display.value+='.'">
+        <input type="button" value="=" class="evaluate">
+        <input type="button" value="+" OnClick="display.value+='+'">
+      </div>
+    </form>
 
     <p>
       <a href="https://github.com/LiviuLvu/free-code-camp/tree/gh-pages/advanced-frontend-projects/calculator">Project Repository on Github</a>
