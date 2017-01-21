@@ -93,19 +93,19 @@ function TimerModule() {
   }
 
   function timeoutCount() {
-    if (breakTimer < 0) {
+    if (localBreakTimer < 0) {
       localBreakTimer = breakTimer;
     }
 
-    var minutes = parseInt(breakTimer / 60, 10);
-    var seconds = parseInt(breakTimer % 60, 10);
+    var minutes = parseInt(localBreakTimer / 60, 10);
+    var seconds = parseInt(localBreakTimer % 60, 10);
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     $('.time').text(minutes + ":" + seconds);
 
-    --breakTimer;
+    --localBreakTimer;
 
-    if (breakTimer < 0) {
+    if (localBreakTimer < 0) {
       $('.message').text('Stay focused!');
       clearInterval(breakInterval);
       isOn = 'off';
