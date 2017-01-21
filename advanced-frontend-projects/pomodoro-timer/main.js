@@ -1,15 +1,31 @@
+var isOn = 'off';
 
-function TimerModule(timer, breakTimer) {
-  var isOn = false;
+jQuery(function($) {
+  $('input[value="Start"]').on('click', function(event) {
+    var pomodoro = new TimerModule();
+    pomodoro.start();
+
+    $('input[value="Reset"]').on('click', function(event) {
+      pomodoro.reset();
+    });
+  });
+
+});
+
+
+function TimerModule() {
+  var timer = $('.work-val').val() * 60;
+  var breakTimer = $('.break-val').val() * 60;
   var interval, breakInterval;
   var localTimer = timer;
   var localBreakTimer = breakTimer;
-  var keepCount;
+  var audio = new Audio('sound/ding.mp3');
+
+  // // abstraction attempt
+  // var keepCount;
 
   // function countTime(selectedTimer) {
   //   var minutes, seconds;
-
-
 
   //   minutes = parseInt(selectedTimer / 60, 10);
   //   seconds = parseInt(selectedTimer % 60, 10);
@@ -68,16 +84,17 @@ function TimerModule(timer, breakTimer) {
     $('.time').text(minutes + ":" + seconds);
 
     --localTimer;
+
     if (localTimer < 0) {
-      $('.message').text('Good job, Timeout!');
       clearInterval(interval);
       this.takeBreak();
+      audio.play();
     } 
   }
 
   function timeoutCount() {
     if (breakTimer < 0) {
-      breakTimer = $('.break-val').val() * 60;
+      localBreakTimer = breakTimer;
     }
 
     var minutes = parseInt(breakTimer / 60, 10);
@@ -87,23 +104,30 @@ function TimerModule(timer, breakTimer) {
     $('.time').text(minutes + ":" + seconds);
 
     --breakTimer;
+
     if (breakTimer < 0) {
       $('.message').text('Stay focused!');
       clearInterval(breakInterval);
-      interval = setInterval(count.bind(this), 1000);
+      isOn = 'off';
+      this.start();
+      audio.play();
     } 
   }
 
   this.start = function() {
-    if (!this.isOn) {
+    if (isOn === 'off') {
       interval = setInterval(count.bind(this), 1000);
-      $('.message').text('Go for it!');
     }
-    this.isOn = true;
+    isOn = 'on';
+
+    $('.message').text('Go for it!');
+    $('.message, .time').css('color','green');
   };
 
   this.takeBreak = function() {
     breakInterval = setInterval(timeoutCount.bind(this), 1000);
+    $('.message').text('Good job, Timeout!');
+    $('.message, .time').css('color','red');
   };
 
   this.reset = function() {
@@ -111,26 +135,6 @@ function TimerModule(timer, breakTimer) {
     clearInterval(breakInterval);
     $('.message').text('Timer was reset to 0');
     $('.time').text('00' + ":" + '00');
-    this.isOn = false;
+    isOn = 'off';
   };
 }
-
-
-jQuery(function($) {
-
-  $('input[value="Start"]').on('click', function(event) {
-    var timer = $('.work-val').val() * 60;
-    var breakTimer = $('.break-val').val() * 60;
-
-    var pomodoro = new TimerModule(timer, breakTimer);
-
-    pomodoro.start();
-
-    $('input[value="Reset"]').on('click', function(event) {
-      pomodoro.reset();
-    });
-
-  });
-
-
-});
