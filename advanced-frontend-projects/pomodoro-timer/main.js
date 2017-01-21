@@ -12,7 +12,6 @@ jQuery(function($) {
 
 });
 
-
 function TimerModule() {
   var timer = $('.work-val').val() * 60;
   var breakTimer = $('.break-val').val() * 60;
@@ -20,56 +19,6 @@ function TimerModule() {
   var localTimer = timer;
   var localBreakTimer = breakTimer;
   var audio = new Audio('sound/ding.mp3');
-
-  // // abstraction attempt
-  // var keepCount;
-
-  // function countTime(selectedTimer) {
-  //   var minutes, seconds;
-
-  //   minutes = parseInt(selectedTimer / 60, 10);
-  //   seconds = parseInt(selectedTimer % 60, 10);
-  //   // put a 0 in front of one digit
-  //   minutes = minutes < 10 ? "0" + minutes : minutes;
-  //   seconds = seconds < 10 ? "0" + seconds : seconds;
-  //   $('.time').text(minutes + ":" + seconds);
-
-  //   keepCount = --selectedTimer;
-  //   console.log(selectedTimer);
-  //   console.log(keepCount);
-  //   console.log(selectedTimer < keepCount);
-  //   if (selectedTimer < keepCount) {
-  //     selectedTimer = keepCount;
-  //   }
-
-  //   if (selectedTimer < 0) {
-  //     return true;
-  //   }
-
-  //   return false;
-  // }
-
-  // function count2() {
-  //   var keepCount = localTimer;
-  //   var isDone = countTime(localTimer);
-
-  //   if (isDone) {
-  //     $('.message').text('Good job, Timeout!');
-  //     clearInterval(interval);
-  //     this.takeBreak();
-  //   } 
-  // }
-
-  // function timeoutCount2() {
-  //   var isDone = countTime(localBreakTimer);
-  //   if (isDone) {
-  //     $('.message').text('Stay focused!');
-  //     clearInterval(breakInterval);
-  //     interval = setInterval(count2.bind(this), 1000);
-  //   } 
-  // }
-
-  /////
 
   function count() {
     if (localTimer < 0) {
