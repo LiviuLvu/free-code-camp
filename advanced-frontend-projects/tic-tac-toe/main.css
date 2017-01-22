@@ -1,0 +1,29 @@
+* {
+  font-family: sans-serif;
+  text-align: center;
+  color: black; }
+
+h1 {
+  font-size: 40px; }
+
+.grid {
+  max-width: 300px;
+  margin: 50px auto; }
+  .grid :last-child {
+    border-bottom: none; }
+
+.row {
+  display: flex;
+  border-bottom: 1px solid black; }
+  .row :last-child {
+    border-right: none; }
+  .row div {
+    width: 100px;
+    height: 100px;
+    border-right: 1px solid black;
+    display: inline-block;
+    border-bottom: none; }
+    .row div span {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 100px; }
