@@ -4,20 +4,35 @@ $border: 3px solid #607d8b;
 * {
   font-family: $font;
   text-align: center;
-  color: #a63a3a;
+  color: #607d8b;
+}
+
+.settings {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.action {
+  color: #d15a5a;
 }
 
 h1 {
   font-size: 40px;
 }
 
-.grid {
+input[type='button'] {
+  padding: 7px 16px;
+  margin: 0px;
+  font-size: 26px;
+}
+
+.game-grid {
   max-width: 300px;
   margin: 50px auto;
+  // display: none;
   :last-child {
     border-bottom: none;
   }
-  
 }
 
 .row {
@@ -26,16 +41,14 @@ h1 {
   :last-child {
     border-right: none;
   }
-  div {
+  p {
     width: 100px;
     height: 100px;
+    margin: 0px; 
     border-right: $border;
-    display: inline-block;
     border-bottom: none;
-    span {
-      font-size: 50px;
-      font-weight: 300;
-      line-height: 100px;
-    }
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 100px;
   }
 }

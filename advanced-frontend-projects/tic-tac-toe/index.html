@@ -10,29 +10,29 @@
 <body>
   <h1>Tic Tac Toe Game</h1>
 
-  <form>
-    <label for="radio">
-      <p>Select Payer</p>
-      <input type="radio" name="select" value="x" checked>X
-      <input type="radio" name="select" value="o">O
-    </label>
-  </form>
+  <div class="settings">
+    <h3 class="action">Select Payer</h3>
+    <form class="choice">
+        <input type="button" value="x">
+        <input type="button" value="o">
+    </form>
+  </div>
 
-  <div class="grid">
+  <div class="game-grid">
     <div class="row">
-      <div id="1"><span></span></div>
-      <div id="2"><span></span></div>
-      <div id="3"><span></span></div>
+      <p id="1"></p>
+      <p id="2"></p>
+      <p id="3"></p>
     </div>
     <div class="row">
-      <div id="4"><span></span></div>
-      <div id="5"><span></span></div>
-      <div id="6"><span>o</span></div>
+      <p id="4"></p>
+      <p id="5"></p>
+      <p id="6"></p>
     </div>
     <div class="row">
-      <div id="7"><span></span></div>
-      <div id="8"><span></span></div>
-      <div id="9"><span>x</span></div>
+      <p id="7"></p>
+      <p id="8"></p>
+      <p id="9"></p>
     </div>
   </div>
 
