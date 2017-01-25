@@ -16,7 +16,11 @@ h1 {
 input[type='button'] {
   padding: 7px 16px;
   margin: 0px;
-  font-size: 26px; }
+  font-size: 26px;
+  background: none;
+  border: 3px solid #607d8b; }
+  input[type='button']:hover {
+    border: 3px solid #d15a5a; }
 
 .game-grid {
   max-width: 300px;

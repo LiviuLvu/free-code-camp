@@ -24,6 +24,11 @@ input[type='button'] {
   padding: 7px 16px;
   margin: 0px;
   font-size: 26px;
+  background: none;
+  border: $border;
+  &:hover {
+    border: 3px solid #d15a5a;
+  }
 }
 
 .game-grid {
