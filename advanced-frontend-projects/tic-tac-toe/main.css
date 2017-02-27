@@ -43,3 +43,6 @@ input[type='button'] {
     font-size: 50px;
     font-weight: 300;
     line-height: 100px; }
+
+.winstate {
+  color: red; }

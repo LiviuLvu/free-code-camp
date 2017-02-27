@@ -1,11 +1,7 @@
-// switch players after each move
 // ai move is triggered after activePlayer moved
-// check if game is over
-// current player is winner if game not tie
 // reset board on game over
 // show select player on restart
 
-// default value for activePlayer player
 var humanPlayer, aiPlayer;
 var activePlayer;
 var move;
@@ -26,10 +22,11 @@ $('.choice input').on('click', function() {
   $('.settings').css('display', 'none');
   // show grid
   $('.game-grid').css('display', 'block');
-
+  // first move is made by human
   activePlayer = humanPlayer;
 });
 
+// switch players after each move
 function switchTurn() {
   if (activePlayer === humanPlayer) {
     activePlayer = aiPlayer;
@@ -48,7 +45,6 @@ $('.game-grid p').on('click', function() {
     move = $('.game-grid p').index($(this));
     recordMove();
     isGameOver();
-    isTie();
     switchTurn();
   }
 });
@@ -56,11 +52,10 @@ $('.game-grid p').on('click', function() {
 // record the choice in the moves aray
 function recordMove() {
   movesRecorder[move] = activePlayer;
-  // console.log(movesRecorder);
 }
 
+// check if game is over
 function isGameOver() {
-
   var a = activePlayer;
   var i1 = $('#1').html();
   var i2 = $('#2').html();
@@ -71,19 +66,35 @@ function isGameOver() {
   var i7 = $('#7').html();
   var i8 = $('#8').html();
   var i9 = $('#9').html();
-
-  if (i1===a & i2===a & i3===a ||
-      i4===a & i5===a & i6===a ||
-      i7===a & i8===a & i9===a ||
-      i1===a & i4===a & i7===a ||
-      i2===a & i5===a & i8===a ||
-      i3===a & i6===a & i9===a ||
-      i1===a & i5===a & i9===a ||
-      i3===a & i5===a & i7===a ) {
-    console.log(activePlayer + ' won!');
+  // current player is winner if game not tie
+  if (i1===a & i2===a & i3===a) {
+    highlightWin(1,2,3);
   }
+  else if (i4===a & i5===a & i6===a) {
+    highlightWin(4,5,6);
+  }
+  else if (i7===a & i8===a & i9===a) {
+    highlightWin(7,8,9);
+  }
+  else if (i1===a & i4===a & i7===a) {
+    highlightWin(1,4,7);
+  }
+  else if (i2===a & i5===a & i8===a) {
+    highlightWin(2,5,8);
+  }
+  else if (i3===a & i6===a & i9===a) {
+    highlightWin(3,6,9);
+  }
+  else if (i1===a & i5===a & i9===a) {
+    highlightWin(1,5,9);
+  }
+  else if (i3===a & i5===a & i7===a) {
+    highlightWin(3,5,7);
+  }
+  isTie();
 }
 
+// check if game is over and game is tie
 function isTie() {
   var boardFull = movesRecorder.every(function(element) {
     return element !== 0;
@@ -91,4 +102,10 @@ function isTie() {
   if (boardFull) {
     console.log('Game is Tie! Nobody won.');
   }
+}
+
+// highlight win state with color
+function highlightWin (x,y,z) {
+  console.log(activePlayer + ' player won!');
+  $('#' + x +','+ '#' + y +','+ '#' + z).addClass('winstate');
 }
