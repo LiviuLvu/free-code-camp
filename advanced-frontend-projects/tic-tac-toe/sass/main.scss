@@ -1,5 +1,6 @@
 $font: sans-serif;
 $border: 3px solid #607d8b;
+$colorAccent: #d15a5a;
 
 * {
   font-family: $font;
@@ -13,7 +14,7 @@ $border: 3px solid #607d8b;
 }
 
 .action {
-  color: #d15a5a;
+  color: $colorAccent;
 }
 
 h1 {
@@ -22,12 +23,12 @@ h1 {
 
 input[type='button'] {
   padding: 7px 16px;
-  margin: 0px;
+  margin: 6px;
   font-size: 26px;
   background: none;
   border: $border;
   &:hover {
-    border: 3px solid #d15a5a;
+    border: 3px solid $colorAccent;
   }
 }
 
@@ -59,4 +60,11 @@ input[type='button'] {
 }
 .winstate {
   color: red;
+}
+.hidden {
+  visibility: hidden;
+}
+.message {
+  font-size: 22px;
+  color: $colorAccent;
 }

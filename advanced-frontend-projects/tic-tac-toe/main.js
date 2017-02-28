@@ -1,6 +1,6 @@
-// ai move is triggered after activePlayer moved
 // reset board on game over
 // show select player on restart
+// ai move is triggered after activePlayer moved
 
 var humanPlayer, aiPlayer;
 var activePlayer;
@@ -24,6 +24,10 @@ $('.choice input').on('click', function() {
   $('.game-grid').css('display', 'block');
   // first move is made by human
   activePlayer = humanPlayer;
+});
+
+$('.restart-btn').on('click', function () {
+  resetGame();
 });
 
 // switch players after each move
@@ -91,7 +95,10 @@ function isGameOver() {
   else if (i3===a & i5===a & i7===a) {
     highlightWin(3,5,7);
   }
-  isTie();
+  else {
+    isTie();
+  }
+
 }
 
 // check if game is over and game is tie
@@ -101,11 +108,26 @@ function isTie() {
   });
   if (boardFull) {
     console.log('Game is Tie! Nobody won.');
+    $('.restart-btn').removeClass('hidden');
+    $('.message').text('Game is Tie! Nobody won.');
   }
 }
 
 // highlight win state with color
-function highlightWin (x,y,z) {
+function highlightWin(x,y,z) {
   console.log(activePlayer + ' player won!');
   $('#' + x +','+ '#' + y +','+ '#' + z).addClass('winstate');
+  $('.message').html('Player "' + activePlayer + '" wins!');
+  $('.restart-btn').removeClass('hidden');
+}
+
+function resetGame() {
+  console.log('game reset');
+  $('#1, #2, #3, #4, #5, #6, #7, #8, #9').empty().removeClass('winstate');
+  movesRecorder = [0,0,0,0,0,0,0,0,0];
+
+  $('.settings').css('display', 'block');
+  $('.game-grid').css('display', 'none');
+  $('.restart-btn').addClass('hidden');
+  $('.message').empty();
 }
