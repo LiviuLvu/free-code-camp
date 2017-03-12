@@ -118,6 +118,7 @@ function highlightWin(x,y,z) {
   console.log(activePlayer + ' player won!');
   $('#' + x +','+ '#' + y +','+ '#' + z).addClass('winstate');
   $('.message').html('Player "' + activePlayer + '" wins!');
+  $('.game-grid p').off();
   $('.restart-btn').removeClass('hidden');
 }
 
