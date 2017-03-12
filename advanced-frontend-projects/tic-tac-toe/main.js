@@ -42,9 +42,8 @@ function switchTurn() {
 
 function aiMove() {
   console.log('computer hei!');
-
+  // prevent move if game over
   if (gameEnd) {
-    console.log('AI is sad, game ended');
     return false;
   }
 
@@ -59,11 +58,14 @@ function aiMove() {
   recordMove();
   isGameOver();
   switchTurn();
-  console.log(movesRecorder);
 }
 
 function humanMove() {
-  console.log('hei human!');
+  // prevent move if game over
+  if (gameEnd) {
+    return false;
+  }
+
   $('.game-grid p').on('click', function () {
     // check if box is empty
     if ($(this).is(':empty')) {
@@ -148,8 +150,8 @@ function highlightWin(x,y,z) {
   $('#' + x +','+ '#' + y +','+ '#' + z).addClass('winstate');
   $('.message').html('Player "' + activePlayer + '" wins!');
   $('.restart-btn').removeClass('hidden');
-  gameEnd = true;
   $('.game-grid p').off();
+  gameEnd = true;
 }
 
 function resetGame() {
