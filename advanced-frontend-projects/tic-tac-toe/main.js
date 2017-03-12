@@ -161,7 +161,5 @@ function resetGame() {
   $('.game-grid').css('display', 'none');
   $('.restart-btn').addClass('hidden');
   $('.message').empty();
-  $('.game-grid p').on('click', function () {
-    humanMove();
-  });
+  gameEnd = false;
 }
