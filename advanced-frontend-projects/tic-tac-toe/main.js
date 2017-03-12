@@ -30,6 +30,11 @@ $('.restart-btn').on('click', function () {
   resetGame();
 });
 
+$('.game-grid p').on('click', function () {
+  thisP = this;
+  makeMove(thisP);
+});
+
 // switch players after each move
 function switchTurn() {
   if (activePlayer === humanPlayer) {
@@ -40,18 +45,18 @@ function switchTurn() {
   }
 }
 
-$('.game-grid p').on('click', function() {
+function makeMove(thisP) {
   // check if box is empty
-  if ($(this).is(':empty')) {
+  if ($(thisP).is(':empty')) {
     // write value in box
-    $(this).text(activePlayer);
+    $(thisP).text(activePlayer);
     // get index of clicked box
     move = $('.game-grid p').index($(this));
     recordMove();
     isGameOver();
     switchTurn();
   }
-});
+}
 
 // record the choice in the moves aray
 function recordMove() {
@@ -118,8 +123,8 @@ function highlightWin(x,y,z) {
   console.log(activePlayer + ' player won!');
   $('#' + x +','+ '#' + y +','+ '#' + z).addClass('winstate');
   $('.message').html('Player "' + activePlayer + '" wins!');
-  $('.game-grid p').off();
   $('.restart-btn').removeClass('hidden');
+  $('.game-grid p').off();
 }
 
 function resetGame() {
@@ -131,4 +136,8 @@ function resetGame() {
   $('.game-grid').css('display', 'none');
   $('.restart-btn').addClass('hidden');
   $('.message').empty();
+  $('.game-grid p').on('click', function () {
+    thisP = this;
+    makeMove(thisP);
+  });
 }
