@@ -1,11 +1,8 @@
-// reset board on game over
-// show select player on restart
-// ai move is triggered after activePlayer moved
-
 var humanPlayer, aiPlayer;
 var activePlayer;
 var move;
 var movesRecorder = [0,0,0,0,0,0,0,0,0];
+var gameEnd = false;
 
 // choose player
 $('.choice input').on('click', function() {
@@ -24,40 +21,64 @@ $('.choice input').on('click', function() {
   $('.game-grid').css('display', 'block');
   // first move is made by human
   activePlayer = humanPlayer;
+  humanMove();
 });
 
 $('.restart-btn').on('click', function () {
   resetGame();
 });
 
-$('.game-grid p').on('click', function () {
-  thisP = this;
-  makeMove(thisP);
-});
-
 // switch players after each move
 function switchTurn() {
   if (activePlayer === humanPlayer) {
     activePlayer = aiPlayer;
+    aiMove();
   }
   else {
     activePlayer = humanPlayer;
+    humanMove();
   }
 }
 
-function makeMove(thisP) {
-  // check if box is empty
-  if ($(thisP).is(':empty')) {
-    // write value in box
-    $(thisP).text(activePlayer);
-    // get index of clicked box
-    move = $('.game-grid p').index($(this));
-    recordMove();
-    isGameOver();
-    switchTurn();
+function aiMove() {
+  console.log('computer hei!');
+
+  if (gameEnd) {
+    console.log('AI is sad, game ended');
+    return false;
   }
+
+  move = movesRecorder.findIndex(function (element, index, array) {
+    return element === 0;
+  });
+
+  emptySpot = $('.game-grid p').get(move);
+  console.log(emptySpot);
+  $(emptySpot).text(activePlayer);
+  
+  recordMove();
+  isGameOver();
+  switchTurn();
+  console.log(movesRecorder);
 }
 
+function humanMove() {
+  console.log('hei human!');
+  $('.game-grid p').on('click', function () {
+    // check if box is empty
+    if ($(this).is(':empty')) {
+      // write value in box
+      $(this).text(activePlayer);
+      // get index of clicked box
+      move = $('.game-grid p').index($(this));
+      // prevent accidental double clicks
+      $('.game-grid p').off();
+      recordMove();
+      isGameOver();
+      switchTurn();
+    } 
+  });
+}
 // record the choice in the moves aray
 function recordMove() {
   movesRecorder[move] = activePlayer;
@@ -120,10 +141,14 @@ function isTie() {
 
 // highlight win state with color
 function highlightWin(x,y,z) {
-  console.log(activePlayer + ' player won!');
+  if (activePlayer === humanPlayer) {
+    console.log('You winner, you!');
+    console.log(activePlayer + ' is active player');
+  }
   $('#' + x +','+ '#' + y +','+ '#' + z).addClass('winstate');
   $('.message').html('Player "' + activePlayer + '" wins!');
   $('.restart-btn').removeClass('hidden');
+  gameEnd = true;
   $('.game-grid p').off();
 }
 
@@ -137,7 +162,6 @@ function resetGame() {
   $('.restart-btn').addClass('hidden');
   $('.message').empty();
   $('.game-grid p').on('click', function () {
-    thisP = this;
-    makeMove(thisP);
+    humanMove();
   });
 }
