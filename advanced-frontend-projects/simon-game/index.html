@@ -2,25 +2,52 @@
 <html lang="en">
 
 <head>
-   <meta charset="utf-8">
-   <title>Simon Game</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="main.css">
+  <meta charset="utf-8">
+  <title>Simon Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <h2>Simon Game</h2>
+  <div class="control">
+      <h2>Simon Game</h2>
 
-  <div class="row">
-    <div class="game-btn b1" id="b1">1</div>
-    <div class="game-btn b2" id="b2">2</div>
+      <div class="flex">
+        <div class="row">
+          <div class="btn-ctrl" id="start"></div>
+          <div>START</div>
+        </div>
+        
+        <div class="row">
+          <div class="btn-ctrl" id="strict"></div>
+          <div>STRICT</div>
+        </div>
+
+        <div class="row">
+          <div class="btn-ctrl" id="reset"></div>
+          <div>RESET</div>
+        </div>
+      </div>
+      
+      <div>
+        <div id="count">00</div>
+        <div>COUNT</div>
+      </div>
   </div>
-  <div class="row">
-    <div class="game-btn b3" id="b3">3</div>
-    <div class="game-btn b4" id="b4">4</div>
+
+  <div class="btn-row">
+    <div class="btn b1" id="b1"></div>
+    <div class="btn b2" id="b2"></div>
   </div>
-  <button>Start</button>
-  <button>Strict</button>
-  <div id="count">00</div>
+  <div class="btn-row">
+    <div class="btn b3" id="b3"></div>
+    <div class="btn b4" id="b4"></div>
+  </div>
+
+  <div>
+    <a href="https://github.com/LiviuLvu/free-code-camp/tree/gh-pages/advanced-frontend-projects/simon-game">
+      View Project Code on Github</a>
+  </div>
 
   <script
     src="https://code.jquery.com/jquery-3.1.1.min.js"

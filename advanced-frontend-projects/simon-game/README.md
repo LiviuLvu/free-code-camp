@@ -1,4 +1,9 @@
 # Simon Game  
-  
+
+Live app:  
+http://liviulvu.github.io/free-code-camp/advanced-frontend-projects/simon-game/  
+
+Custom font downloaded from FontsForWeb.com  
+
 To do:  
-Build simon game functionality
+Implement simon game functionality  
