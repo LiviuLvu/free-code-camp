@@ -22,9 +22,15 @@ html, body{
   background-color: #000;
 }
 
-a {
+footer {
   color: #e6e1cb;
   margin-left: 20px;
+  padding-bottom: 30px;
+}
+
+a {
+  color: #e6e1cb;
+  text-decoration: none;
 }
 
 a:hover {
@@ -104,7 +110,7 @@ a:hover {
   border-radius: 8px;
   font-size: 60px;
   background-color: #000;
-  color: #e6e1cb;
+  color: #bdefed;
   font-family: 'DSDIGI' !important;
 }
 
@@ -134,14 +140,34 @@ a:hover {
   background-color: #03a64d;
 }
 
+.b1:hover {
+  background-color: #04EF6E;
+}
+
 .b2 {
   background-color: #af3138;
+}
+
+.b2:hover {
+  background-color: #C94049;
 }
 
 .b3 {
   background-color: #ebc30d;
 }
 
+.b3:hover {
+  background-color: #FFE375;
+}
+
 .b4 {
   background-color: #1e8dff;
+}
+
+.b4:hover {
+  background-color: #56AAFE;
+}
+
+.light {
+  background-color: #fff;
 }
