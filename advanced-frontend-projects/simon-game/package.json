@@ -1,0 +1,13 @@
+{
+  "name": "simon-game",
+  "version": "1.0.0",
+  "description": "Live app:  \r http://liviulvu.github.io/free-code-camp/advanced-frontend-projects/simon-game/",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
