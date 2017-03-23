@@ -80,28 +80,35 @@ a:hover {
   box-shadow:         2px 6px 0 0 #b1b1b1;
 }
 
-.control #start {
-  background-color: #771f1f
+#start {
+  background-color: #771f1f;
 }
 
-.control #start:hover {
-  background-color: #E9151A
+#start.active {
+  background-color: #ff292d;
 }
 
-.control #strict {
-  background-color: #A38D0F
+#start:hover {
+  background-color: #a71d1f;
 }
 
-.control #strict:hover {
-  background-color: #FCDD02
+#strict {
+  background-color: #A38D0F;
+}
+#strict.active {
+  background-color: #ffe365;
 }
 
-.control #reset {
-  background-color: #A38D0F
+#strict:hover {
+  background-color: #e0c400;
 }
 
-.control #reset:hover {
-  background-color: #FCDD02
+#reset {
+  background-color: #A38D0F;
+}
+
+#reset:hover {
+  background-color: #e0c400;
 }
 
 #count {

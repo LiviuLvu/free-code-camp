@@ -13,29 +13,53 @@
 // create hghtlight for each button
 // hear sound on button press
 
+// //
+// CONTINUE from add button interaction with sound
+
 var gameMemory = '';
 var userMemory = '';
 var level = 0;
 var countLevel = 0;
 var buttonsArr = [1, 2, 3, 4];
-
-$('.b1').on('click', function() {
-  playSound();
-});
+var strictMode = 'off';
 
 $('#start').on('click', function() {
   if (level === 0) {
-  nextLevel();
-  start();
+    nextLevel();
+    startSequence();
+    $('#start').addClass('#start active');
   }
 });
 
 $('#strict').on('click', function() {
-  console.log('strict mode gameplay');
+  if (strict === 'off') {
+    strict = 'on';
+    $('#strict').addClass('#strict active');
+  }
+  else {
+    strict = 'off';
+    $('#strict').removeClass('#strict active');
+  }
 });
 
 $('#reset').on('click', function() {
   console.log('reset game');
+});
+
+$('.b1').on('click', function() {
+  playSound(1);
+});
+
+$('.b2').on('click', function() {
+  playSound(2);
+});
+
+$('.b3').on('click', function() {
+  playSound(3);
+});
+
+$('.b4').on('click', function() {
+  playSound(4);
 });
 
 // if answer is correct, go to next level
@@ -48,7 +72,7 @@ function nextLevel() {
 // record game memory based on game level, recursive function 
 
 
-function start() {
+function startSequence() {
   setTimeout(delayMe(), 2000);
 
   function delayMe() {
@@ -70,7 +94,7 @@ function start() {
       // call the function again 
       setTimeout(function() {
         countLevel--;
-        start();  
+        startSequence();  
       }, 1000);
 
     }
