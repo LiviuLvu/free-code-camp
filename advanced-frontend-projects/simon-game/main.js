@@ -17,7 +17,7 @@
 // CONTINUE from add button interaction with sound
 
 var gameMemory = '';
-var userMemory = '';
+var playerMemory = '';
 var level = 0;
 var countLevel = 0;
 var buttonsArr = [1, 2, 3, 4];
@@ -48,18 +48,26 @@ $('#reset').on('click', function() {
 
 $('.b1').on('click', function() {
   playSound(1);
+  addToPlayerMemory(1);
+  checkMemory();
 });
 
 $('.b2').on('click', function() {
   playSound(2);
+  addToPlayerMemory(2);
+  checkMemory();
 });
 
 $('.b3').on('click', function() {
   playSound(3);
+  addToPlayerMemory(3);
+  checkMemory();
 });
 
 $('.b4').on('click', function() {
   playSound(4);
+  addToPlayerMemory(4);
+  checkMemory();
 });
 
 // if answer is correct, go to next level
@@ -105,4 +113,19 @@ function startSequence() {
 function playSound(sound) {
   var beep = new Audio('sound/note'+ sound +'.mp3');
   beep.play();
+}
+
+function addToPlayerMemory(nr) {
+  playerMemory += nr;
+}
+
+function checkMemory() {
+  console.log('player ' + playerMemory);
+  if (playerMemory === gameMemory) {
+    level += 1;
+    $('#count').text(level);
+  }
+  else {
+    $('#count').text('ups!');
+  }
 }
