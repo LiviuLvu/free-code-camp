@@ -72,7 +72,7 @@ $('.b4').on('click', function() {
 
 // if answer is correct, go to next level
 function nextLevel() {
-  level = level + 2;
+  level = level + 1;
   countLevel = level;
   $('#count').text(level);
 }
@@ -90,6 +90,7 @@ function startSequence() {
       var randNr = buttonsArr[Math.floor(Math.random() * buttonsArr.length)];
       playSound(randNr);
       gameMemory += randNr;
+      
       console.log('game code is ' + gameMemory);
 
       $('.b' + randNr).addClass('light');
@@ -122,8 +123,10 @@ function addToPlayerMemory(nr) {
 function checkMemory() {
   console.log('player ' + playerMemory);
   if (playerMemory === gameMemory) {
-    level += 1;
+    nextLevel();
     $('#count').text(level);
+    // call startSequence
+    startSequence();
   }
   else {
     $('#count').text('ups!');
