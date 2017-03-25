@@ -20,8 +20,9 @@ var gameMemory = '';
 var playerMemory = '';
 var level = 0;
 var countLevel = 0;
+var replayStep = 0;
 var buttonsArr = [1, 2, 3, 4];
-var strictMode = 'off';
+var strict = 'off';
 
 $('#start').on('click', function() {
   if (level === 0) {
@@ -35,10 +36,12 @@ $('#strict').on('click', function() {
   if (strict === 'off') {
     strict = 'on';
     $('#strict').addClass('#strict active');
+    $('#display').text('on');
   }
   else {
     strict = 'off';
     $('#strict').removeClass('#strict active');
+    $('#display').text('off');
   }
 });
 
@@ -72,43 +75,60 @@ $('.b4').on('click', function() {
 
 // if answer is correct, go to next level
 function nextLevel() {
+  gameMemory = '';
+  playerMemory = '';
+
   level = level + 1;
   countLevel = level;
-  $('#count').text(level);
+  $('#display').text(level);
 }
 
-// record game memory based on game level, recursive function 
-
-
 function startSequence() {
-  setTimeout(delayMe(), 2000);
+  setTimeout(delaySeq(), 1000);
+}
 
-  function delayMe() {
+function delaySeq() {
+  if (countLevel > 0) {
+    
+    var randNr = buttonsArr[Math.floor(Math.random() * buttonsArr.length)];
+    playSound(randNr);
+    gameMemory += randNr;
+    
+    $('.b' + randNr).addClass('light');
 
-    if (countLevel > 0) {
-      
-      var randNr = buttonsArr[Math.floor(Math.random() * buttonsArr.length)];
-      playSound(randNr);
-      gameMemory += randNr;
-      
-      console.log('game code is ' + gameMemory);
+    // turn light off on the button
+    setTimeout(function() {
+      $('.b' + randNr).removeClass('light');
+    }, 500);
 
-      $('.b' + randNr).addClass('light');
+    // call the function again 
+    setTimeout(function() {
+      countLevel--;
+      startSequence();  
+    }, 1000);
 
-      // turn light off on the button
-      setTimeout(function() {
-        $('.b' + randNr).removeClass('light');
-      }, 500);
-
-      // call the function again 
-      setTimeout(function() {
-        countLevel--;
-        startSequence();  
-      }, 1000);
-
-    }
   }
+}
 
+function replay() {
+  setTimeout(function () {
+    delayReplay();
+  }, 1000);
+}
+
+function delayReplay() {
+  if (gameMemory.length > replayStep) {
+    var nr = gameMemory.charAt(replayStep);
+
+    playSound(nr);
+    $('.b' + nr).addClass('light');
+    setTimeout(function () {
+      $('.b' + nr).removeClass('light');
+    }, 500);
+
+    replayStep += 1;
+    replay();
+  }
 }
 
 function playSound(sound) {
@@ -121,14 +141,25 @@ function addToPlayerMemory(nr) {
 }
 
 function checkMemory() {
-  console.log('player ' + playerMemory);
+  $('#display').text('...');
+
   if (playerMemory === gameMemory) {
     nextLevel();
-    $('#count').text(level);
-    // call startSequence
-    startSequence();
+    setTimeout(function() {
+        startSequence();  
+    }, 1000);
   }
-  else {
-    $('#count').text('ups!');
+  else if (playerMemory !== gameMemory && playerMemory.length === gameMemory.length) {
+    
+    if (strict === 'off') {
+      replayStep = 0;
+      $('#display').text('redo');
+      replay();
+      playerMemory = '';
+    }
+    else {
+      // restart game
+
+    }
   }
 }
