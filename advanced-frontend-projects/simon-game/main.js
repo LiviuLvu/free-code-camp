@@ -1,7 +1,7 @@
 // TO DO LIST
+// restart btn function
 // win game on step 20
 // show win message
-// restart btn function
 // reset game on wrong move
 
 var gameMemory = '';
