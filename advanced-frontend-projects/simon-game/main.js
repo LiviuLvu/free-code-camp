@@ -1,20 +1,8 @@
-// add step after each correct answer
-// replay reminder on wrong answer
-// display step
-// win game on step 20 compvared
+// TO DO LIST
+// win game on step 20
 // show win message
-
 // restart btn function
-
-// strict mode btn function
 // reset game on wrong move
-// show error !!
-
-// create hghtlight for each button
-// hear sound on button press
-
-// //
-// CONTINUE from add button interaction with sound
 
 var gameMemory = '';
 var playerMemory = '';
