@@ -34,7 +34,7 @@ $('#strict').on('click', function() {
 });
 
 $('#reset').on('click', function() {
-  console.log('reset game');
+  resetGame();
 });
 
 $('.b1').on('click', function() {
@@ -150,4 +150,16 @@ function checkMemory() {
 
     }
   }
+}
+
+function resetGame() {
+  gameMemory = '';
+  playerMemory = '';
+  level = 0;
+  countLevel = 0;
+  replayStep = 0;
+  strict = 'off';
+  $('#start').removeClass('start active');
+  $('#display').text('00');
+  $('#strict').removeClass('#strict active');
 }
