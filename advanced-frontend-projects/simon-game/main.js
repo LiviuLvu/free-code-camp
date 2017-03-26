@@ -1,8 +1,5 @@
 // TO DO LIST
-// restart btn function
-// win game on step 20
 // show win message
-// reset game on wrong move
 
 var gameMemory = '';
 var playerMemory = '';
@@ -145,9 +142,11 @@ function checkMemory() {
       replay();
       playerMemory = '';
     }
-    else {
-      // restart game
-
+    else if (strict === 'on') {
+      $('#display').text('fail');
+      setTimeout(function() {
+        resetGame();
+      }, 1000);
     }
   }
 }
@@ -162,4 +161,8 @@ function resetGame() {
   $('#start').removeClass('start active');
   $('#display').text('00');
   $('#strict').removeClass('#strict active');
+}
+
+function win() {
+  // ..
 }
