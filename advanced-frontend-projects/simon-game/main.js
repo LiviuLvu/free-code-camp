@@ -66,7 +66,7 @@ function nextLevel() {
 }
 
 function startSequence() {
-  setTimeout(delaySeq(), 1000);
+  setTimeout(delaySeq(), 500);
 }
 
 function delaySeq() {
@@ -87,7 +87,7 @@ function delaySeq() {
     setTimeout(function() {
       countLevel--;
       startSequence();  
-    }, 1000);
+    }, 500);
 
   }
 }
@@ -95,7 +95,7 @@ function delaySeq() {
 function replay() {
   setTimeout(function () {
     delayReplay();
-  }, 1000);
+  }, 500);
 }
 
 function delayReplay() {
