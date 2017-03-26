@@ -1,6 +1,3 @@
-// TO DO LIST
-// show win message
-
 var gameMemory = '';
 var playerMemory = '';
 var level = 0;
@@ -8,29 +5,30 @@ var countLevel = 0;
 var replayStep = 0;
 var buttonsArr = [1, 2, 3, 4];
 var strict = 'off';
+var youWinInterval;
 
-$('#start').on('click', function() {
+$('.start').on('click', function() {
   if (level === 0) {
     nextLevel();
     startSequence();
-    $('#start').addClass('#start active');
+    $('.start').addClass('.start active');
   }
 });
 
-$('#strict').on('click', function() {
+$('.strict').on('click', function() {
   if (strict === 'off') {
     strict = 'on';
-    $('#strict').addClass('#strict active');
+    $('.strict').addClass('.strict active');
     $('#display').text('on');
   }
   else {
     strict = 'off';
-    $('#strict').removeClass('#strict active');
+    $('.strict').removeClass('.strict active');
     $('#display').text('off');
   }
 });
 
-$('#reset').on('click', function() {
+$('.reset').on('click', function() {
   resetGame();
 });
 
@@ -58,7 +56,6 @@ $('.b4').on('click', function() {
   checkMemory();
 });
 
-// if answer is correct, go to next level
 function nextLevel() {
   gameMemory = '';
   playerMemory = '';
@@ -127,14 +124,27 @@ function addToPlayerMemory(nr) {
 
 function checkMemory() {
   $('#display').text('...');
+  // win state
+  if (level === 20 && playerMemory === gameMemory && playerMemory.length === gameMemory.length) {
+    $('#display').text('you');
+    $('.start').removeClass('.start active');
+    
+    var youWinInterval = setInterval(function() {
+      if ( $('#display:contains("you")') ) {
+        $('#display').text('win');
+        
+        $('.start').addClass('.start active');
+        $('.strict').addClass('.strict active');
+        $('.reset').addClass('.reset active');
+      }
+      else {
+        $('#display').text('win');
+      }
+    }, 700);
 
-  if (playerMemory === gameMemory) {
-    nextLevel();
-    setTimeout(function() {
-        startSequence();  
-    }, 1000);
   }
-  else if (playerMemory !== gameMemory && playerMemory.length === gameMemory.length) {
+  // wrong answer
+  else if (playerMemory.length === gameMemory.length && playerMemory !== gameMemory) {
     
     if (strict === 'off') {
       replayStep = 0;
@@ -149,20 +159,24 @@ function checkMemory() {
       }, 1000);
     }
   }
+  // correct answer
+  else if (playerMemory === gameMemory) {
+    nextLevel();
+    setTimeout(function() {
+        startSequence();  
+    }, 1000);
+  }
 }
 
 function resetGame() {
+  clearInterval(youWinInterval);
   gameMemory = '';
   playerMemory = '';
   level = 0;
   countLevel = 0;
   replayStep = 0;
   strict = 'off';
-  $('#start').removeClass('start active');
+  $('.start').removeClass('.start active');
+  $('.strict').removeClass('.strict active');
   $('#display').text('00');
-  $('#strict').removeClass('#strict active');
-}
-
-function win() {
-  // ..
 }

@@ -80,34 +80,38 @@ a:hover {
   box-shadow:         2px 6px 0 0 #b1b1b1;
 }
 
-#start {
+.start {
   background-color: #771f1f;
 }
 
-#start.active {
+.start.active {
   background-color: #ff292d;
 }
 
-#start:hover {
+.start:hover {
   background-color: #a71d1f;
 }
 
-#strict {
+.strict {
   background-color: #A38D0F;
 }
-#strict.active {
+.strict.active {
   background-color: #ffe365;
 }
 
-#strict:hover {
+.strict:hover {
   background-color: #e0c400;
 }
 
-#reset {
+.reset {
   background-color: #A38D0F;
 }
 
-#reset:hover {
+.reset.active {
+  background-color: #ffe365;
+}
+
+.reset:hover {
   background-color: #e0c400;
 }
 
